@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaLink } from "react-icons/fa";
 
 function PlaceList() {
   const [blogPost, setBlogPost] = useState([]);
@@ -18,40 +19,58 @@ function PlaceList() {
     <main>
       {blogPost.map((item) => {
         return (
-          <div className="flex flex-row gap-5" key={item.eid}>
+          <div
+            className="flex flex-row gap-5 justify-center mb-10"
+            key={item.eid}
+          >
             <div className="thumbnail-img">
               <img
-                className="object-cover h-[200px] w-[290px]"
+                className="object-cover h-[200px] w-[290px] rounded-3xl"
                 src={item.photos[0]}
               ></img>
             </div>
             <div className="place-info">
-              <h3 className="font-bold">{item.title}</h3>
-              <p>
+              <h3 className="font-bold font-Kanit text-xl ">{item.title}</h3>
+              <p className="font-Kanit font-light">
                 {item.description.length > 100
                   ? `${item.description.substring(0, 100)} ...`
                   : item.description}
               </p>
               <a
                 href={item.url}
-                className="text-sky-600 underline underline-offset-1"
+                target="_blank"
+                className="text-sky-600 underline underline-offset-1 font-Kanit font-light"
               >
                 อ่านต่อ
               </a>
               <div className="flex flex-row gap-2">
-                <p>หมวด</p>
+                <p className="font-Kanit font-light">หมวด</p>
                 {item.tags.map((item, index) => {
                   return (
                     <div key={index}>
-                      <p>{item}</p>
+                      <p className="font-Kanit font-light underline underline-offset-1">
+                        {item}
+                      </p>
                     </div>
                   );
                 })}
               </div>
-              <div className="flex flex-row">
-                <img src="https://dummyimage.com/85x85/000/fff"></img>
-                <img src="https://dummyimage.com/85x85/000/fff"></img>
-                <img src="https://dummyimage.com/85x85/000/fff"></img>
+              <div className="flex flex-row gap-7 mt-3">
+                <img
+                  src={item.photos[1]}
+                  className="object-cover h-[85px] w-[85px] rounded-lg"
+                ></img>
+                <img
+                  src={item.photos[2]}
+                  className="object-cover h-[85px] w-[85px] rounded-lg"
+                ></img>
+                <img
+                  src={item.photos[3]}
+                  className="object-cover h-[85px] w-[85px] rounded-lg"
+                ></img>
+                <div className="border-2 rounded-full border-sky-500 p-1 h-[40px] w-[40px] ml-[280px] mt-10">
+                  <FaLink className="h-[30px] w-[30px] text-sky-500 object-center p-0.5" />
+                </div>
               </div>
             </div>
           </div>
