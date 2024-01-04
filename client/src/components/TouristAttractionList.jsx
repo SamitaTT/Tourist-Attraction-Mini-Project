@@ -16,16 +16,16 @@ function PlaceList() {
     getBlogPost();
   });
   return (
-    <main>
+    <main className="flex flex-col ml-auto mr-auto w-[1100px]">
       {blogPost.map((item) => {
         return (
           <div
-            className="flex flex-row gap-5 justify-center mb-10"
+            className="flex flex-row gap-5 justify-start content-center mb-5 mt-5 ml-auto mr-auto w-[1010px]"
             key={item.eid}
           >
-            <div className="thumbnail-img">
+            <div className="thumbnail-img h-[200px] w-[290px]">
               <img
-                className="object-cover h-[200px] w-[290px] rounded-3xl"
+                className="object-cover h-full w-full rounded-3xl"
                 src={item.photos[0]}
               ></img>
             </div>
