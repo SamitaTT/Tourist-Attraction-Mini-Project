@@ -4,6 +4,7 @@ import { FaLink } from "react-icons/fa";
 
 function Content() {
   const [searchText, setSearchText] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [blogPost, setBlogPost] = useState([]);
   const getBlogPost = async () => {
     try {
@@ -23,6 +24,7 @@ function Content() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (searchText) {
       getBlogPostBySearchText(searchText);
@@ -40,14 +42,23 @@ function Content() {
     }
   };
 
+  const handleTagClick = (tag) => {
+    setInputValue((previnputValue) => previnputValue + tag + " ");
+    setSearchText((prevsearchText) => prevsearchText + tag + " ");
+  };
+
   return (
     <main className="flex flex-col">
-      <p className="font-Kanit ml-[270px] p-3">ค้นหาที่เที่ยว</p>
+      <div className="flex justify-center">
+        <p className="font-Kanit p-3 w-[1010px]">ค้นหาที่เที่ยว</p>
+      </div>
       <input
         type="text"
         className="font-Kanit text-center mb-5 p-1.5 border-b-2 w-[950px] ml-auto mr-auto focus:outline-none"
         placeholder="หาที่แล้วไปเที่ยวกัน ..."
+        value={inputValue}
         onChange={(e) => {
+          setInputValue(e.target.value);
           setSearchText(e.target.value);
         }}
       ></input>
@@ -80,7 +91,7 @@ function Content() {
                 <a
                   href={item.url}
                   target="_blank"
-                  className="text-sky-600 underline underline-offset-1 font-Kanit font-light"
+                  className="text-sky-600 underline underline-offset-1 font-Kanit font-light hover:text-blue-600"
                 >
                   อ่านต่อ
                 </a>
@@ -92,21 +103,26 @@ function Content() {
                         {index === item.tags.length - 1 ? (
                           <span className="font-Kanit font-light no-underline">
                             และ{" "}
-                            <span className="font-Kanit font-light underline underline-offset-1">
+                            <span
+                              className="font-Kanit font-light underline underline-offset-1"
+                              onClick={() => {
+                                handleTagClick(tag);
+                              }}
+                            >
                               {tag}
                             </span>
                           </span>
                         ) : (
-                          <span className="font-Kanit font-light underline underline-offset-1">
+                          <span
+                            className="font-Kanit font-light underline underline-offset-1"
+                            onClick={() => {
+                              handleTagClick(tag);
+                            }}
+                          >
                             {tag}
                           </span>
                         )}
                       </div>
-                      // <div key={index}>
-                      //   <p className="font-Kanit font-light underline underline-offset-1">
-                      //     {item}
-                      //   </p>
-                      // </div>
                     );
                   })}
                 </div>
