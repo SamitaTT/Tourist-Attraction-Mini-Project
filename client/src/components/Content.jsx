@@ -43,8 +43,8 @@ function Content() {
   };
 
   const handleTagClick = (tag) => {
-    setInputValue((previnputValue) => previnputValue + tag + " ");
-    setSearchText((prevsearchText) => prevsearchText + tag + " ");
+    setInputValue((prevInputValue) => prevInputValue + tag + " ");
+    setSearchText((prevSearchText) => prevSearchText + tag + " ");
   };
 
   return (
@@ -104,7 +104,7 @@ function Content() {
                           <span className="font-Kanit font-light no-underline">
                             และ{" "}
                             <span
-                              className="font-Kanit font-light underline underline-offset-1"
+                              className="font-Kanit font-light underline underline-offset-1 hover:cursor-pointer"
                               onClick={() => {
                                 handleTagClick(tag);
                               }}
@@ -114,7 +114,7 @@ function Content() {
                           </span>
                         ) : (
                           <span
-                            className="font-Kanit font-light underline underline-offset-1"
+                            className="font-Kanit font-light underline underline-offset-1 hover:cursor-pointer"
                             onClick={() => {
                               handleTagClick(tag);
                             }}
@@ -140,19 +140,13 @@ function Content() {
                     className="object-cover h-[85px] w-[85px] rounded-lg"
                   ></img>
                   <div
-                    className="border-2 rounded-full border-sky-500 p-1 h-[40px] w-[40px] ml-[280px] mt-10 hover:cursor-pointer hover:border-blue-600 "
+                    className="border-2 rounded-full border-sky-500 p-1 h-[40px] w-[40px] ml-[280px] mt-10 hover:cursor-pointer hover:border-blue-600 group"
                     onClick={() => {
                       copyToClipBoard(item.url);
                     }}
                   >
-                    <FaLink className="h-[30px] w-[30px] object-center p-0.5 text-sky-500 hover:text-blue-600" />
+                    <FaLink className="h-[30px] w-[30px] object-center p-0.5 text-sky-500 group-hover:text-blue-600" />
                   </div>
-                  {/* <FaLink
-                    className="border-2 rounded-full border-sky-500 p-1 h-[40px] w-[40px] ml-[280px] mt-10 object-center text-sky-500 hover:cursor-pointer hover:text-blue-600 hover:border-blue-600"
-                    onClick={() => {
-                      copyToClipBoard(item.url);
-                    }}
-                  /> */}
                 </div>
               </div>
             </div>
